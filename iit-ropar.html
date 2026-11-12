@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IIT Ropar Internship: Robot Path Planning for Cold Spray — Divyam Singla</title>
+<meta name="description" content="Six-week research internship at IIT Ropar: robot path planning for cold spray deposition on curved geometries using RoboDK and a KUKA KR 60-3, plus a hands-on workshop on cold spray and laser surface engineering.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --alt:#f6f8fb; --line:#e3e8ef; --text:#1a2233; --muted:#5b6b82;
+    --accent:#0b3d91; --accent-soft:#e8eefb; --accent2:#0b3d91;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .mono{font-family:'Inter',sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .logo{font-weight:700;font-size:1.05rem;color:var(--text);text-decoration:none;letter-spacing:-.01em}
+  nav ul{list-style:none;display:flex;gap:28px}
+  nav ul a{text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500}
+  nav ul a:hover{color:var(--accent)}
+  @media(max-width:720px){nav ul{display:none}}
+
+  header.wrap{padding:110px 24px 80px}
+  .tag{font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase}
+  h1{font-size:clamp(2.3rem,6vw,3.8rem);line-height:1.1;margin:16px 0 20px;font-weight:700;letter-spacing:-.025em}
+  h1 span{color:var(--muted);font-weight:500}
+  .lede{max-width:640px;color:var(--muted);font-size:1.12rem}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .btn{display:inline-block;padding:12px 24px;border:1px solid var(--line);color:var(--text);text-decoration:none;font-size:.92rem;font-weight:600;border-radius:6px;transition:.2s;background:#fff}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.solid:hover{background:#082d6b;color:#fff}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:64px}
+  .stat{padding:24px 4px}
+  .stat b{display:block;font-size:1.6rem;color:var(--accent);font-weight:700;letter-spacing:-.02em}
+  .stat small{color:var(--muted);font-size:.85rem}
+
+  section.wrap{max-width:none;padding:88px max(24px,calc((100% - 1032px)/2))}
+  section:nth-of-type(odd){background:var(--alt)}
+  .sec-head{margin-bottom:40px}
+  .sec-head .num{display:block;font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+  .sec-head .num::after{content:" —"}
+  h2{font-size:2rem;font-weight:700;letter-spacing:-.02em}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px;position:relative;transition:box-shadow .25s,transform .25s}
+  .card:hover{box-shadow:0 10px 30px rgba(16,35,70,.08);transform:translateY(-2px)}
+  .card h3{font-size:1.15rem;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+  .meta{font-size:.76rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  .card p,.card li{color:var(--muted);font-size:.95rem}
+  .card ul{padding-left:18px;margin-top:6px}
+  .card li{margin-bottom:6px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+  .chip{font-size:.76rem;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+  .badge{display:inline-block;margin-bottom:12px;font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:999px;background:#fff4e5;color:#a35a00}
+  .badge.wip{background:#eef2f7;color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:20px}
+  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+  @media(max-width:760px){.about{grid-template-columns:1fr}}
+  .about p{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+  .kv{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+  .kv div{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:.92rem}
+  .kv div:last-child{border:none}
+  .kv span:first-child{color:var(--muted);font-size:.75rem;font-weight:600;letter-spacing:.08em}
+  .kv span:last-child{font-weight:500;text-align:right}
+
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .skills h4{color:var(--text);font-size:.8rem;font-weight:700;margin-bottom:6px;letter-spacing:.1em}
+
+  .contact{text-align:center}
+  .contact p{color:var(--muted);max-width:540px;margin:0 auto 28px;font-size:1.05rem}
+  .contact .cta{justify-content:center}
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+
+  .thumb{display:block;margin:-28px -28px 18px;border-bottom:1px solid var(--line);background:#fff;border-radius:10px 10px 0 0;overflow:hidden}
+  .thumb img{width:100%;height:200px;object-fit:cover;display:block}
+  .more{display:inline-block;margin-top:16px;font-weight:600;font-size:.9rem;color:var(--accent);text-decoration:none}
+  .more:hover{text-decoration:underline}
+
+  .back{display:inline-block;margin-bottom:22px;color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500}
+  .back:hover{color:var(--accent)}
+  .video{width:100%;border-radius:10px;border:1px solid var(--line);background:#000;display:block}
+  .two{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
+  @media(max-width:800px){.two{grid-template-columns:1fr}}
+  .prose p{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+  .parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+  .part{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:box-shadow .25s}
+  .part:hover{box-shadow:0 10px 30px rgba(16,35,70,.08)}
+  .part img{width:100%;aspect-ratio:1;object-fit:contain;display:block;background:#fff}
+  .part div{padding:14px 16px;border-top:1px solid var(--line)}
+  .part b{display:block;font-size:.95rem}
+  .part small{color:var(--muted);font-size:.82rem}
+  .steps{counter-reset:s;list-style:none}
+  .steps li{counter-increment:s;position:relative;padding:0 0 22px 52px;color:var(--muted)}
+  .steps li b{color:var(--text);display:block;margin-bottom:2px}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+  .specs div span:last-child{font-weight:600}
+
+  .btn{border-radius:999px}
+  .hero-split{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+  .hero-photo{border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#eef2f9}
+  .hero-photo img{width:100%;height:520px;object-fit:cover;object-position:center 60%;display:block}
+  @media(max-width:860px){.hero-split{grid-template-columns:1fr}.hero-photo img{height:380px}}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .award{background:#fff4e5;color:#a35a00;font-weight:600;font-size:.82rem;padding:6px 14px;border-radius:999px}
+  .fea-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+  @media(max-width:800px){.fea-grid{grid-template-columns:1fr}}
+  .fig{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+  .fig img{width:100%;display:block}
+  .fig figcaption{padding:10px 14px;font-size:.84rem;color:var(--muted);border-top:1px solid var(--line)}
+  table.res{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.94rem}
+  table.res th,table.res td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line)}
+  table.res th{background:var(--accent-soft);color:var(--accent);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+  table.res tr:last-child td{border-bottom:none}
+  table.res td b{color:var(--text)}
+  .note{background:#eef2f7;border-radius:10px;padding:14px 18px;color:var(--muted);font-size:.9rem;margin-top:18px}
+  .pedal{margin-bottom:56px}
+  .pedal h3{font-size:1.3rem;margin-bottom:6px}
+  .pedal .sub{color:var(--muted);margin-bottom:14px}
+  .chassis{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+  @media(max-width:800px){.chassis{grid-template-columns:1fr}}
+  .wrap.contact p{color:var(--muted);max-width:540px;margin:0 auto 26px}
+
+  .hero-photo img{object-position:center}
+  .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:800px){.g2,.g3{grid-template-columns:1fr}}
+  .formula{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.95rem;color:var(--text);line-height:1.9}
+  .formula small{display:block;font-family:Inter,sans-serif;color:var(--muted);font-size:.82rem;margin-top:6px;line-height:1.5}
+  .finding{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+  .finding b{font-size:1.4rem;color:var(--accent);min-width:78px}
+  .finding p{color:var(--muted);font-size:.94rem}
+  .chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo">Divyam Singla</a>
+    <ul>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="wrap">
+  <a class="back" href="index.html#experience">← Back to experience</a>
+  <div class="hero-split">
+    <div>
+      <div class="tag">Research Internship · IIT Ropar · June – July 2025</div>
+      <h1>Robot Path Planning<br><span>for Cold Spray Deposition</span></h1>
+      <p class="lede">A six-week research internship at the Department of Mechanical Engineering, IIT Ropar, under Prof. Harpreet Singh. The project: planning and simulating robot toolpaths so a cold spray nozzle stays normal to a curved surface at a constant stand-off distance, and generating the robot program in KUKA's KRL language.</p>
+      <div class="chip-row"><span class="chip">RoboDK</span><span class="chip">KUKA KR 60-3</span><span class="chip">KRL</span><span class="chip">SolidWorks</span><span class="chip">MATLAB</span><span class="chip">Cold Spray</span></div>
+    </div>
+    <div class="hero-photo"><img src="assets/ropar-kuka.jpg" alt="KUKA robot following a cold spray toolpath in RoboDK" style="object-fit:contain;background:#fff"></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>6 weeks</b><small>6 June – 18 July 2025</small></div>
+    <div class="stat"><b>KUKA KR 60-3</b><small>6-axis industrial robot</small></div>
+    <div class="stat"><b>80°–90°</b><small>Best spray angle range found</small></div>
+    <div class="stat"><b>KRL</b><small>Robot program generated</small></div>
+  </div>
+</header>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Overview</span><h2>The problem</h2></div>
+  <div class="two">
+    <div class="prose">
+      <p>Cold spray deposits metal powder at supersonic speed without melting it, so it's used to coat and repair parts in aerospace, defence and automotive. Coating quality depends on the nozzle staying <b style="color:var(--text)">perpendicular to the surface</b>, at a <b style="color:var(--text)">constant stand-off distance</b>, moving with the right <b style="color:var(--text)">step-over</b> between passes.</p>
+      <p>On a flat plate that's easy. On a curved part, the surface normal changes at every point, so the robot has to keep re-orienting the nozzle. The goal was to plan and simulate that motion offline in RoboDK before running it on the real robot.</p>
+    </div>
+    <div class="kv">
+      <div><span>INSTITUTE</span><span>IIT Ropar, Mechanical Engg.</span></div>
+      <div><span>SUPERVISOR</span><span>Prof. Harpreet Singh</span></div>
+      <div><span>DURATION</span><span>6 June – 18 July 2025</span></div>
+      <div><span>ROBOT</span><span>KUKA KR 60-3</span></div>
+      <div><span>SOFTWARE</span><span>RoboDK · SolidWorks · MATLAB</span></div>
+      <div><span>OUTPUT</span><span>Simulated toolpaths + KRL program</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Method</span><h2>How the work was done</h2></div>
+  <figure class="fig" style="max-width:640px;margin:0 auto"><img src="assets/ropar-method.jpg" alt="Project methodology flowchart"><figcaption>Methodology: from problem definition to simulation, coverage analysis and documentation</figcaption></figure>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Geometry</span><h2>Curved substrate &amp; surface normals</h2></div>
+  <div class="g2">
+    <figure class="fig"><img src="assets/ropar-cad.jpg" alt="Curved substrate modelled in SolidWorks"><figcaption>Curved substrate modelled in SolidWorks and imported into RoboDK</figcaption></figure>
+    <figure class="fig"><img src="assets/ropar-normals.jpg" alt="Surface normals plotted in MATLAB"><figcaption>Surface normals along the curve, plotted in MATLAB</figcaption></figure>
+  </div>
+  <div class="g2" style="margin-top:16px">
+    <div class="formula">Surface profile (XZ plane):<br>z = −146 + √(38025 − x²),&nbsp; x ∈ [−95, 95] mm<small>An arc of radius 195 mm (√38025) spanning 190 mm.</small></div>
+    <div class="formula">Unit surface normal:<br>n̂ = [ −x / √(38025 − x²), 0, 1 ] / ‖·‖<small>Used to orient the nozzle perpendicular to the surface at every target point.</small></div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Simulation</span><h2>Toolpath planning in RoboDK</h2></div>
+  <div class="g2">
+    <figure class="fig"><img src="assets/ropar-path.jpg" alt="Toolpath targets with orientation frames"><figcaption>Raster toolpath with tool frames aligned to the surface normal</figcaption></figure>
+    <figure class="fig"><img src="assets/ropar-raster.jpg" alt="Raster scan passes across the curved surface"><figcaption>Raster scan passes across the curved substrate</figcaption></figure>
+  </div>
+  <p style="color:var(--muted);margin-top:18px">Two cases were simulated: <b style="color:var(--text)">static spray impact</b> at fixed spray angles of 50°, 60°, 70°, 80° and 90°, and a <b style="color:var(--text)">raster scan</b> in which the nozzle sweeps the whole surface. RoboDK was also used to check reach, singularities and collisions between the robot, nozzle and part.</p>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Robot motion</span><h2>Joint behaviour &amp; KRL program</h2></div>
+  <div class="g2">
+    <figure class="fig"><img src="assets/ropar-joints.jpg" alt="Joint angles and velocities versus time"><figcaption>Joint angles and velocities over the path: smooth, without sudden jumps</figcaption></figure>
+    <figure class="fig"><img src="assets/ropar-joint-acc.jpg" alt="Joint accelerations versus time"><figcaption>Joint accelerations stay smooth and bounded along the toolpath</figcaption></figure>
+  </div>
+  <figure class="fig" style="margin-top:16px"><img src="assets/ropar-krl.jpg" alt="Generated KRL robot program"><figcaption>Generated KUKA KRL program: tool and base frames, then LIN/CIRC moves along the toolpath</figcaption></figure>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Experiment</span><h2>Step-size study: copper cold spray</h2></div>
+  <div class="two">
+    <figure class="fig"><img src="assets/ropar-copper.jpg" alt="Copper cold spray tracks at different step sizes"><figcaption>Copper tracks sprayed at different step-over distances</figcaption></figure>
+    <div class="prose">
+      <p>Step size, the sideways distance between neighbouring passes, decides whether the coating is uniform. Too large leaves gaps between tracks, and too small causes thick build-up where the tracks overlap.</p>
+      <p>On flat surfaces, a fixed step with about <b style="color:var(--text)">30–50% overlap</b> gives a uniform coat. On curved surfaces the spray angle and stand-off change along the path, so the step size has to adapt to the local curvature, with smaller steps on more strongly curved regions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Results</span><h2>Key findings</h2></div>
+  <div class="grid">
+    <div class="finding"><b>80–90°</b><p>Near-normal spray angles gave the best adhesion, densest coating and most uniform build-up.</p></div>
+    <div class="finding"><b>50–70°</b><p>Oblique angles caused particle deflection, lower deposition efficiency and uneven thickness.</p></div>
+    <div class="finding"><b>Raster</b><p>Raster scanning, with tool orientation and overlap tuned, gave more uniform coverage than static spraying.</p></div>
+  </div>
+  <p style="color:var(--muted);margin-top:18px">Offline simulation let us check paths, collisions and coverage before touching the real robot, which cuts trial-and-error, saves powder and reduces machine downtime.</p>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Workshop</span><h2>Hands-on workshop: cold spray &amp; laser surface engineering</h2></div>
+  <p style="color:var(--muted);margin-bottom:22px;max-width:760px">During the internship I also attended a five-day hands-on workshop at IIT Ropar (7–11 July 2025), held under the DST-AMT Centre of Excellence for Degradation Resistant Thermal Spray Coatings. It combined expert lectures with practical demo sessions on cold spray, laser processing and robotic coating.</p>
+  <div class="g3">
+    <figure class="fig"><img src="assets/ws-pendant.jpg" alt="Operating a robot teach pendant during the workshop" style="height:340px;object-fit:cover;object-position:center 30%"><figcaption>Working with a robot teach pendant in the lab</figcaption></figure>
+    <figure class="fig"><img src="assets/ws-stage.jpg" alt="Receiving the workshop certificate" style="height:340px;object-fit:cover"><figcaption>Certificate presentation, ME Seminar Hall</figcaption></figure>
+    <figure class="fig"><img src="assets/ws-group.jpg" alt="Workshop participants group photo" style="height:340px;object-fit:cover"><figcaption>Workshop participants and organisers</figcaption></figure>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Certificates</span><h2>Internship &amp; workshop</h2></div>
+  <div class="g2" style="align-items:start">
+    <figure class="fig"><img src="assets/ropar-cert.jpg" alt="IIT Ropar internship completion certificate"><figcaption>Internship completion certificate, IIT Ropar (18 July 2025)</figcaption></figure>
+    <figure class="fig"><img src="assets/ws-cert.jpg" alt="Workshop certificate of participation"><figcaption>Certificate of participation: Hands-on Workshop on Surface Engineering using Cold Spray and Laser Technology</figcaption></figure>
+  </div>
+</section>
+
+<section class="wrap contact reveal">
+  <div class="sec-head" style="justify-content:center"><span class="num">More</span><h2>See other work</h2></div>
+  <div class="cta"><a class="btn solid" href="index.html#projects">All projects</a><a class="btn" href="jet-engine.html">Jet engine</a><a class="btn" href="go-kart.html">Go-kart</a><a class="btn" href="index.html#contact">Contact me</a></div>
+</section>
+
+<footer>© 2026 Divyam Singla · <a href="https://www.linkedin.com/in/divyamsingla09/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/DivyamSingla09" target="_blank" rel="noopener">GitHub</a></footer>
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
