@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divyam Singla — Mechanical Engineer</title>
+<meta name="description" content="Portfolio of Divyam Singla, B.Tech Mechanical Engineering (2027), Punjabi University Patiala. CAD, FEA, CFD, fabrication and robotics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --alt:#f6f8fb; --line:#e3e8ef; --text:#1a2233; --muted:#5b6b82;
+    --accent:#0b3d91; --accent-soft:#e8eefb; --accent2:#0b3d91;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .mono{font-family:'Inter',sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .logo{font-weight:700;font-size:1.05rem;color:var(--text);text-decoration:none;letter-spacing:-.01em}
+  nav ul{list-style:none;display:flex;gap:28px}
+  nav ul a{text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500}
+  nav ul a:hover{color:var(--accent)}
+  @media(max-width:720px){nav ul{display:none}}
+
+  header.wrap{padding:110px 24px 80px}
+  .tag{font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase}
+  h1{font-size:clamp(2.3rem,6vw,3.8rem);line-height:1.1;margin:16px 0 20px;font-weight:700;letter-spacing:-.025em}
+  h1 span{color:var(--muted);font-weight:500}
+  .lede{max-width:640px;color:var(--muted);font-size:1.12rem}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .btn{display:inline-block;padding:12px 24px;border:1px solid var(--line);color:var(--text);text-decoration:none;font-size:.92rem;font-weight:600;border-radius:6px;transition:.2s;background:#fff}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.solid:hover{background:#082d6b;color:#fff}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:64px}
+  .stat{padding:24px 4px}
+  .stat b{display:block;font-size:1.6rem;color:var(--accent);font-weight:700;letter-spacing:-.02em}
+  .stat small{color:var(--muted);font-size:.85rem}
+
+  section.wrap{max-width:none;padding:88px max(24px,calc((100% - 1032px)/2))}
+  section:nth-of-type(odd){background:var(--alt)}
+  .sec-head{margin-bottom:40px}
+  .sec-head .num{display:block;font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+  .sec-head .num::after{content:" —"}
+  h2{font-size:2rem;font-weight:700;letter-spacing:-.02em}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px;position:relative;transition:box-shadow .25s,transform .25s}
+  .card:hover{box-shadow:0 10px 30px rgba(16,35,70,.08);transform:translateY(-2px)}
+  .card h3{font-size:1.15rem;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+  .meta{font-size:.76rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  .card p,.card li{color:var(--muted);font-size:.95rem}
+  .card ul{padding-left:18px;margin-top:6px}
+  .card li{margin-bottom:6px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+  .chip{font-size:.76rem;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+  .badge{display:inline-block;margin-bottom:12px;font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:999px;background:#fff4e5;color:#a35a00}
+  .badge.wip{background:#eef2f7;color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:20px}
+  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+  @media(max-width:760px){.about{grid-template-columns:1fr}}
+  .about p{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+  .kv{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+  .kv div{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:.92rem}
+  .kv div:last-child{border:none}
+  .kv span:first-child{color:var(--muted);font-size:.75rem;font-weight:600;letter-spacing:.08em}
+  .kv span:last-child{font-weight:500;text-align:right}
+
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .skills h4{color:var(--text);font-size:.8rem;font-weight:700;margin-bottom:6px;letter-spacing:.1em}
+
+  .contact{text-align:center}
+  .contact p{color:var(--muted);max-width:540px;margin:0 auto 28px;font-size:1.05rem}
+  .contact .cta{justify-content:center}
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+
+  .thumb{display:block;margin:-28px -28px 18px;border-bottom:1px solid var(--line);background:#fff;border-radius:10px 10px 0 0;overflow:hidden}
+  .thumb img{width:100%;height:200px;object-fit:cover;display:block}
+  .more{display:inline-block;margin-top:16px;font-weight:600;font-size:.9rem;color:var(--accent);text-decoration:none}
+  .more:hover{text-decoration:underline}
+  .contact-list{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 40px;margin-top:34px}
+  .contact-list div{display:flex;flex-direction:column;align-items:center}
+  .contact-list small{font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--muted)}
+  .contact-list a,.contact-list span{color:var(--text);text-decoration:none;font-weight:500}
+  .contact-list a:hover{color:var(--accent)}
+  .hero-outer{max-width:1180px;margin:0 auto;padding:20px 20px 0}
+  .hero-box{background:radial-gradient(120% 140% at 50% 0%,#ffffff 0%,#eef2f9 55%,#e3eaf6 100%);border:1px solid var(--line);border-radius:28px;padding:96px 32px 88px;text-align:center}
+  .hero-box .lede{margin:0 auto}
+  .hero-box .cta{justify-content:center}
+  .hero-box h1{font-size:clamp(2.4rem,6.5vw,4.4rem)}
+  .btn{border-radius:999px}
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+  .tile{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px 20px;text-align:center;transition:transform .25s,box-shadow .25s}
+  .tile:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(16,35,70,.08)}
+  .tile b{display:block;font-size:1.7rem;color:var(--accent);font-weight:700;letter-spacing:-.02em}
+  .tile small{color:var(--muted);font-size:.85rem}
+  @media(max-width:760px){.bento{grid-template-columns:repeat(2,1fr)}.hero-box{padding:64px 22px 56px;border-radius:22px}.hero-outer{padding:12px 12px 0}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo">Divyam Singla</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero-outer">
+  <div class="hero-box">
+    <div class="tag">Mechanical Engineer · Class of 2027</div>
+    <h1>Designing, simulating<br><span>and building machines.</span></h1>
+    <p class="lede">Final-year B.Tech Mechanical Engineering student at Punjabi University, Patiala, with a Minor in Computer Science. I work across CAD, FEA/CFD, fabrication and robotics — from a BLDC-powered jet engine to a podium-finishing go-kart.</p>
+    <div class="cta">
+      <a class="btn solid" href="#projects">View Projects</a>
+      <a class="btn" href="resume.pdf" target="_blank">Download Resume</a>
+    </div>
+  </div>
+  <div class="bento">
+    <div class="tile"><b>8.22</b><small>CGPA (till 5th sem)</small></div>
+    <div class="tile"><b>IIT Ropar</b><small>Research Intern, 2025</small></div>
+    <div class="tile"><b>2 Awards</b><small>HKFC Season 5</small></div>
+    <div class="tile"><b>1 Paper</b><small>Published, IJERT</small></div>
+  </div>
+</header>
+
+<section id="about" class="wrap reveal">
+  <div class="sec-head"><span class="num">About</span><h2>About</h2></div>
+  <div class="about">
+    <div>
+      <p>I'm a mechanical engineer who likes getting hands dirty as much as running simulations. My work spans product design in SolidWorks, structural and thermal analysis in Ansys, and shop-floor fabrication — welding, grinding and assembly.</p>
+      <p>At IIT Ropar I worked on robot path planning for cold spray deposition using KUKA robots. On campus, I've built a working electric turbine jet engine, raced with Team Trinity Karterz, and designed a functionally graded brake disc.</p>
+      <p>I'm currently looking for roles in automotive, manufacturing and design engineering, and I'm available to join from <b style="color:var(--text);font-weight:600">June 2027</b>.</p>
+    </div>
+    <div class="kv">
+      <div><span>DEGREE</span><span>B.Tech Mechanical</span></div>
+      <div><span>MINOR</span><span>Computer Science &amp; Engg.</span></div>
+      <div><span>UNIVERSITY</span><span>Punjabi University, Patiala</span></div>
+      <div><span>GRADUATION</span><span>May 2027</span></div>
+      <div><span>CGPA</span><span>8.22 / 10</span></div>
+      <div><span>FOCUS</span><span>Automotive · Design · Mfg.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="wrap reveal">
+  <div class="sec-head"><span class="num">Experience</span><h2>Experience</h2></div>
+  <div class="card">
+    <h3>Summer Research Intern — IIT Ropar</h3>
+    <div class="meta">JUNE – JULY 2025 · ROPAR, PUNJAB</div>
+    <ul>
+      <li>Developed robot path planning for cold spray deposition using RoboDK and KUKA robots.</li>
+      <li>Wrote KRL (KUKA Robot Language) programs for deposition toolpaths.</li>
+      <li>Prepared a Wire EDM-ready SolidWorks model and supported quality analysis of samples.</li>
+      <li>Used MATLAB for path and process calculations.</li>
+    </ul>
+    <div class="chips"><span class="chip">RoboDK</span><span class="chip">KUKA KRL</span><span class="chip">SolidWorks</span><span class="chip">MATLAB</span><span class="chip">Wire EDM</span></div>
+  </div>
+</section>
+
+<section id="projects" class="wrap reveal">
+  <div class="sec-head"><span class="num">Portfolio</span><h2>Projects</h2></div>
+  <div class="grid">
+
+    <div class="card">
+      <a class="thumb" href="jet-engine.html"><img src="assets/jet-poster.jpg" alt="Electric turbine jet engine test rig"></a>
+      <h3>Electric Turbine Jet Engine</h3>
+      <div class="meta">DESIGN · FABRICATION</div>
+      <p>Designed and fabricated a functional electric turbine jet engine.</p>
+      <ul>
+        <li>Powered by an 1800 Kv BLDC motor with ESC control.</li>
+        <li>3D-printed PLA compressor stage.</li>
+        <li>MIG-welded mild steel chassis.</li>
+      </ul>
+      <div class="chips"><span class="chip">BLDC</span><span class="chip">3D Printing</span><span class="chip">MIG Welding</span></div>
+      <a class="more" href="jet-engine.html">View full project →</a>
+    </div>
+
+    <div class="card">
+      <span class="badge">2 Awards</span>
+      <h3>Team Trinity Karterz — Go-Kart</h3>
+      <div class="meta">HKFC SEASON 5</div>
+      <ul>
+        <li>Designed brake &amp; throttle pedals; static structural FEA in Ansys (650 N / 150 N loads).</li>
+        <li>Designed an undertray with an engine-side cutout for cooling; track tests with an IR gun showed lower engine temperature than a flat undertray.</li>
+        <li>Chassis welding, grinding and engine-department assembly.</li>
+        <li>Team won <b style="color:var(--text);font-weight:600">Best Cross Pad</b> and <b style="color:var(--text);font-weight:600">1st Runner-up (Acceleration)</b>.</li>
+      </ul>
+      <div class="chips"><span class="chip">Ansys</span><span class="chip">SolidWorks</span><span class="chip">Fabrication</span></div>
+    </div>
+
+    <div class="card">
+      <h3>FGM Disc Brake</h3>
+      <div class="meta">CAD · THERMO-MECHANICAL ANALYSIS</div>
+      <p>Functionally graded aluminium–SiC brake disc with linear variation in thickness and reinforcement.</p>
+      <ul>
+        <li>Disc modelled as 18 graded rings (radii 31.75–152.4 mm, 10–30 mm thick) in SolidWorks.</li>
+        <li>Full assembly with spline hub and shaft.</li>
+        <li>Thermo-mechanical analysis completed in Ansys Workbench.</li>
+      </ul>
+      <div class="chips"><span class="chip">SolidWorks</span><span class="chip">Ansys Workbench</span><span class="chip">Composites</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Transwing VTOL</h3>
+      <div class="meta">CAD · ANALYSIS</div>
+      <p>Design and analysis of a transwing vertical take-off and landing aircraft concept.</p>
+      <div class="chips"><span class="chip">SolidWorks</span><span class="chip">Ansys Workbench</span></div>
+    </div>
+
+    <div class="card">
+      <span class="badge wip">IN PROGRESS</span>
+      <h3>Undertray CFD Study</h3>
+      <div class="meta">CFD · GO-KART</div>
+      <p>CFD comparison of the flat vs. cutout undertray from the Trinity Karterz kart, to validate the airflow and cooling improvement seen in track tests.</p>
+      <div class="chips"><span class="chip">Ansys Fluent</span><span class="chip">CFD</span></div>
+    </div>
+
+    <div class="card">
+      <span class="badge wip">IN PROGRESS</span>
+      <h3>Tractor PTO Shaft Design</h3>
+      <div class="meta">MACHINE DESIGN · AUTOMOTIVE</div>
+      <p>Design of a tractor power take-off (PTO) shaft, aimed at agricultural and automotive drivetrain applications.</p>
+      <div class="chips"><span class="chip">SolidWorks</span><span class="chip">Machine Design</span></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="publication" class="wrap reveal">
+  <div class="sec-head"><span class="num">Research</span><h2>Publication</h2></div>
+  <div class="card">
+    <h3>Predictive Maintenance in Heavy Duty Vehicles Using Machine Learning</h3>
+    <div class="meta">IJERT · VOL. 14, ISSUE 09 · RTMSE-2026 · CO-AUTHOR</div>
+    <p>A review of machine learning approaches for predictive maintenance in heavy-duty vehicles.</p>
+  </div>
+</section>
+
+<section id="skills" class="wrap reveal">
+  <div class="sec-head"><span class="num">Expertise</span><h2>Skills</h2></div>
+  <div class="skills">
+    <div class="card"><h4>CAD &amp; DESIGN</h4><div class="chips"><span class="chip">SolidWorks</span><span class="chip">Assemblies</span><span class="chip">GD&amp;T basics</span></div></div>
+    <div class="card"><h4>SIMULATION</h4><div class="chips"><span class="chip">Ansys Workbench</span><span class="chip">Static Structural</span><span class="chip">Thermal</span><span class="chip">CFD</span></div></div>
+    <div class="card"><h4>ROBOTICS &amp; CODE</h4><div class="chips"><span class="chip">RoboDK</span><span class="chip">KUKA KRL</span><span class="chip">MATLAB</span></div></div>
+    <div class="card"><h4>MANUFACTURING</h4><div class="chips"><span class="chip">MIG Welding</span><span class="chip">Grinding</span><span class="chip">3D Printing</span><span class="chip">Wire EDM</span></div></div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h4 style="font-size:.8rem;font-weight:700;letter-spacing:.1em;margin-bottom:8px">COURSEWORK</h4>
+    <p>A Hands-on Introduction to Engineering Simulations — Cornell University (edX), FEA &amp; CFD with Ansys · 2026</p>
+  </div>
+</section>
+
+<section id="leadership" class="wrap reveal">
+  <div class="sec-head"><span class="num">Beyond the lab</span><h2>Leadership</h2></div>
+  <div class="grid">
+    <div class="card"><h3>Organizing Secretary</h3><div class="meta">B.TECH SPORTS MEET 2026</div><p>Handled logistics and funding for an event with 600+ participants.</p></div>
+    <div class="card"><h3>Executive Member</h3><div class="meta">PLACEMENT CLUB</div><p>Helped coordinate campus placement drives and company communication.</p></div>
+  </div>
+</section>
+
+<section id="contact" class="wrap contact reveal">
+  <div class="sec-head" style="justify-content:center"><span class="num">Contact</span><h2>Get in touch</h2></div>
+  <p>Open to Graduate Engineer Trainee and design roles in automotive and manufacturing, plus internships from January 2027.</p>
+  <div class="cta">
+    <a class="btn solid" href="mailto:singladivyam09@gmail.com">Email Me</a>
+    <a class="btn" href="https://www.linkedin.com/in/divyamsingla09/" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/DivyamSingla09" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="contact-list">
+    <div><small>EMAIL</small><a href="mailto:singladivyam09@gmail.com">singladivyam09@gmail.com</a></div>
+    <div><small>PHONE</small><a href="tel:+917589490234">+91 75894 90234</a></div>
+    <div><small>LOCATION</small><span>Patiala, Punjab</span></div>
+  </div>
+</section>
+
+<footer>© 2026 Divyam Singla · <a href="https://www.linkedin.com/in/divyamsingla09/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/DivyamSingla09" target="_blank" rel="noopener">GitHub</a></footer>
+
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

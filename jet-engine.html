@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electric Turbine Jet Engine — Divyam Singla</title>
+<meta name="description" content="Design, CAD and fabrication of an electric turbine jet engine with a BLDC-driven 3D-printed compressor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --alt:#f6f8fb; --line:#e3e8ef; --text:#1a2233; --muted:#5b6b82;
+    --accent:#0b3d91; --accent-soft:#e8eefb; --accent2:#0b3d91;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .mono{font-family:'Inter',sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .logo{font-weight:700;font-size:1.05rem;color:var(--text);text-decoration:none;letter-spacing:-.01em}
+  nav ul{list-style:none;display:flex;gap:28px}
+  nav ul a{text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500}
+  nav ul a:hover{color:var(--accent)}
+  @media(max-width:720px){nav ul{display:none}}
+
+  header.wrap{padding:110px 24px 80px}
+  .tag{font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase}
+  h1{font-size:clamp(2.3rem,6vw,3.8rem);line-height:1.1;margin:16px 0 20px;font-weight:700;letter-spacing:-.025em}
+  h1 span{color:var(--muted);font-weight:500}
+  .lede{max-width:640px;color:var(--muted);font-size:1.12rem}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .btn{display:inline-block;padding:12px 24px;border:1px solid var(--line);color:var(--text);text-decoration:none;font-size:.92rem;font-weight:600;border-radius:6px;transition:.2s;background:#fff}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.solid:hover{background:#082d6b;color:#fff}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:64px}
+  .stat{padding:24px 4px}
+  .stat b{display:block;font-size:1.6rem;color:var(--accent);font-weight:700;letter-spacing:-.02em}
+  .stat small{color:var(--muted);font-size:.85rem}
+
+  section.wrap{max-width:none;padding:88px max(24px,calc((100% - 1032px)/2))}
+  section:nth-of-type(odd){background:var(--alt)}
+  .sec-head{margin-bottom:40px}
+  .sec-head .num{display:block;font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+  .sec-head .num::after{content:" —"}
+  h2{font-size:2rem;font-weight:700;letter-spacing:-.02em}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px;position:relative;transition:box-shadow .25s,transform .25s}
+  .card:hover{box-shadow:0 10px 30px rgba(16,35,70,.08);transform:translateY(-2px)}
+  .card h3{font-size:1.15rem;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+  .meta{font-size:.76rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  .card p,.card li{color:var(--muted);font-size:.95rem}
+  .card ul{padding-left:18px;margin-top:6px}
+  .card li{margin-bottom:6px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+  .chip{font-size:.76rem;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+  .badge{display:inline-block;margin-bottom:12px;font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:999px;background:#fff4e5;color:#a35a00}
+  .badge.wip{background:#eef2f7;color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:20px}
+  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+  @media(max-width:760px){.about{grid-template-columns:1fr}}
+  .about p{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+  .kv{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+  .kv div{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:.92rem}
+  .kv div:last-child{border:none}
+  .kv span:first-child{color:var(--muted);font-size:.75rem;font-weight:600;letter-spacing:.08em}
+  .kv span:last-child{font-weight:500;text-align:right}
+
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .skills h4{color:var(--text);font-size:.8rem;font-weight:700;margin-bottom:6px;letter-spacing:.1em}
+
+  .contact{text-align:center}
+  .contact p{color:var(--muted);max-width:540px;margin:0 auto 28px;font-size:1.05rem}
+  .contact .cta{justify-content:center}
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+
+  .thumb{display:block;margin:-28px -28px 18px;border-bottom:1px solid var(--line);background:#fff;border-radius:10px 10px 0 0;overflow:hidden}
+  .thumb img{width:100%;height:200px;object-fit:cover;display:block}
+  .more{display:inline-block;margin-top:16px;font-weight:600;font-size:.9rem;color:var(--accent);text-decoration:none}
+  .more:hover{text-decoration:underline}
+
+  .back{display:inline-block;margin-bottom:22px;color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500}
+  .back:hover{color:var(--accent)}
+  .video{width:100%;border-radius:10px;border:1px solid var(--line);background:#000;display:block}
+  .two{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
+  @media(max-width:800px){.two{grid-template-columns:1fr}}
+  .prose p{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+  .parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+  .part{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:box-shadow .25s}
+  .part:hover{box-shadow:0 10px 30px rgba(16,35,70,.08)}
+  .part img{width:100%;aspect-ratio:1;object-fit:contain;display:block;background:#fff}
+  .part div{padding:14px 16px;border-top:1px solid var(--line)}
+  .part b{display:block;font-size:.95rem}
+  .part small{color:var(--muted);font-size:.82rem}
+  .steps{counter-reset:s;list-style:none}
+  .steps li{counter-increment:s;position:relative;padding:0 0 22px 52px;color:var(--muted)}
+  .steps li b{color:var(--text);display:block;margin-bottom:2px}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+  .specs div span:last-child{font-weight:600}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo">Divyam Singla</a>
+    <ul>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="wrap">
+  <a class="back" href="index.html#projects">← Back to all projects</a>
+  <div class="tag">Project · Design &amp; Fabrication</div>
+  <h1>Electric Turbine<br><span>Jet Engine</span></h1>
+  <p class="lede">A working jet engine demonstrator built from scratch as a team project: a BLDC motor spins a 3D-printed centrifugal compressor that feeds air into a combustion chamber, where gas fuel is ignited by a spark plug and exits through the exhaust.</p>
+  <div class="stats">
+    <div class="stat"><b>1800 Kv</b><small>BLDC motor + ESC</small></div>
+    <div class="stat"><b>~96 mm</b><small>Compressor impeller dia.</small></div>
+    <div class="stat"><b>5 parts</b><small>Custom 3D-printed (PLA)</small></div>
+    <div class="stat"><b>Tested</b><small>Bench run on video</small></div>
+  </div>
+</header>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Demo</span><h2>Bench test</h2></div>
+  <video class="video" controls preload="metadata" poster="assets/jet-poster.jpg" playsinline>
+    <source src="assets/jet-engine-test.mp4" type="video/mp4">
+  </video>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Overview</span><h2>The idea</h2></div>
+  <div class="two">
+    <div class="prose">
+      <p>A real gas-turbine engine uses its own turbine to drive the compressor. To make a safe, buildable demonstrator, we replaced that loop with an electric drive: a high-speed BLDC motor spins the compressor directly, so the airflow can be controlled by the throttle from the ESC.</p>
+      <p>Air enters through the closed inlet and the centrifugal impeller pressurises it. In the combustion chamber, gas fuel comes in through the fuel inlet and is lit by a spark plug fired from a high-voltage ignition module. The hot gases then leave through the outer body and exhaust nozzle. The whole engine sits on a wooden test bench with the battery and speed controller alongside.</p>
+      <p>I worked on the CAD of the 3D-printed parts and on the fabrication and assembly of the engine.</p>
+    </div>
+    <div class="kv specs">
+      <div><span>MOTOR</span><span>1800 Kv BLDC</span></div>
+      <div><span>CONTROL</span><span>ESC + servo tester (throttle)</span></div>
+      <div><span>POWER</span><span>LiPo battery pack</span></div>
+      <div><span>COMPRESSOR</span><span>Centrifugal, curved blades</span></div>
+      <div><span>IGNITION</span><span>HV arc module + spark plug</span></div>
+      <div><span>FUEL</span><span>Gas, via fuel inlet</span></div>
+      <div><span>PRINTED PARTS</span><span>PLA</span></div>
+      <div><span>CHAMBER &amp; BODY</span><span>Mild steel, MIG-welded</span></div>
+      <div><span>CAD</span><span>Fusion 360 / FreeCAD</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Assembly</span><h2>Exploded view</h2></div>
+  <img src="assets/jet-exploded.jpg" alt="Exploded CAD assembly: closed inlet, turbine, BLDC motor, combustion chamber, fuel inlet, outer body" style="width:100%;border-radius:10px;border:1px solid var(--line);display:block">
+  <p style="color:var(--muted);margin-top:14px;font-size:.92rem">Full assembly in FreeCAD, front to back: closed inlet → compressor impeller → BLDC motor → combustion chamber → fuel inlet → outer body and nozzle.</p>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">CAD</span><h2>Designed components</h2></div>
+  <div class="parts">
+    <div class="part"><img src="assets/Final_Turbine.jpg" alt="Compressor impeller"><div><b>Compressor impeller ("turbine")</b><small>Ø 96 mm · curved-blade centrifugal rotor</small></div></div>
+    <div class="part"><img src="assets/motor_holder_final.jpg" alt="Motor holder"><div><b>Motor holder</b><small>Ø 130 mm · motor mount and casing</small></div></div>
+    <div class="part"><img src="assets/inlet_final.jpg" alt="Inlet ring"><div><b>Inlet ring</b><small>Ø 130 mm · 6-bolt flange</small></div></div>
+    <div class="part"><img src="assets/inlet_lid_final.jpg" alt="Inlet lid"><div><b>Inlet lid</b><small>Ø 45 mm intake opening</small></div></div>
+    <div class="part"><img src="assets/motor_cap.jpg" alt="Motor cap"><div><b>Motor cap</b><small>Shaft bore + 4 mounting holes</small></div></div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Hardware</span><h2>Electronics &amp; ignition</h2></div>
+  <div class="grid">
+    <div class="card"><a class="thumb"><img src="assets/jet-electronics.jpg" alt="Drive electronics with printed impeller" style="height:300px;object-fit:contain;background:#f1f2f4"></a><h3>Drive system</h3><p>Battery pack → ESC → BLDC motor, with a servo tester acting as the throttle knob. Shown with the 3D-printed impeller in its housing.</p></div>
+    <div class="card"><a class="thumb"><img src="assets/jet-ignition.jpg" alt="Ignition battery, high-voltage module and spark plug" style="height:300px;object-fit:contain;background:#f1f2f4"></a><h3>Ignition system</h3><p>A separate battery powers a high-voltage arc module that fires a spark plug inside the combustion chamber to light the fuel.</p></div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Process</span><h2>How it was built</h2></div>
+  <ol class="steps">
+    <li><b>Concept &amp; sizing</b>Chose an electrically driven compressor and sized the impeller and housings around the BLDC motor.</li>
+    <li><b>CAD modelling</b>Modelled the impeller, motor holder, inlet ring, inlet lid and motor cap with bolt patterns for assembly.</li>
+    <li><b>3D printing</b>Printed all five parts in PLA and fitted the impeller to the motor shaft.</li>
+    <li><b>Metal fabrication</b>Fabricated the mild-steel combustion chamber and body and joined them with MIG welding.</li>
+    <li><b>Ignition system</b>Fitted a spark plug in the combustion chamber, powered by a high-voltage arc module and a separate battery pack.</li>
+    <li><b>Assembly &amp; electronics</b>Mounted everything on a wooden test bench and wired the motor, ESC, servo tester and battery.</li>
+    <li><b>Testing</b>Spun up the compressor from the servo tester, fed gas through the fuel inlet and fired the ignition on the bench.</li>
+  </ol>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Takeaways</span><h2>What I learned</h2></div>
+  <div class="grid">
+    <div class="card"><h3>Design for manufacturing</h3><p>Designing printed parts that bolt together and line up with welded metal parts taught me to think about tolerances and fit from the start.</p></div>
+    <div class="card"><h3>Turbomachinery basics</h3><p>Hands-on understanding of how a centrifugal compressor, combustion chamber and nozzle work together in a jet engine.</p></div>
+    <div class="card"><h3>Teamwork</h3><p>Built as a group project, splitting work across CAD, fabrication, electronics and testing.</p></div>
+  </div>
+</section>
+
+<section class="wrap contact reveal">
+  <div class="sec-head" style="justify-content:center"><span class="num">More</span><h2>See other projects</h2></div>
+  <div class="cta"><a class="btn solid" href="index.html#projects">All projects</a><a class="btn" href="index.html#contact">Contact me</a></div>
+</section>
+
+<footer>© 2026 Divyam Singla · <a href="https://www.linkedin.com/in/divyamsingla09/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/DivyamSingla09" target="_blank" rel="noopener">GitHub</a></footer>
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
