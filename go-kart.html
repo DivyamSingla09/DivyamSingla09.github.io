@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Trinity Karterz Go-Kart — Divyam Singla</title>
+<meta name="description" content="Go-kart for HKFC Season 5: brake and throttle pedal design with Ansys FEA, undertray for engine cooling, chassis fabrication.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --alt:#f6f8fb; --line:#e3e8ef; --text:#1a2233; --muted:#5b6b82;
+    --accent:#0b3d91; --accent-soft:#e8eefb; --accent2:#0b3d91;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .mono{font-family:'Inter',sans-serif}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .logo{font-weight:700;font-size:1.05rem;color:var(--text);text-decoration:none;letter-spacing:-.01em}
+  nav ul{list-style:none;display:flex;gap:28px}
+  nav ul a{text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500}
+  nav ul a:hover{color:var(--accent)}
+  @media(max-width:720px){nav ul{display:none}}
+
+  header.wrap{padding:110px 24px 80px}
+  .tag{font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase}
+  h1{font-size:clamp(2.3rem,6vw,3.8rem);line-height:1.1;margin:16px 0 20px;font-weight:700;letter-spacing:-.025em}
+  h1 span{color:var(--muted);font-weight:500}
+  .lede{max-width:640px;color:var(--muted);font-size:1.12rem}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+  .btn{display:inline-block;padding:12px 24px;border:1px solid var(--line);color:var(--text);text-decoration:none;font-size:.92rem;font-weight:600;border-radius:6px;transition:.2s;background:#fff}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.solid{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.solid:hover{background:#082d6b;color:#fff}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:64px}
+  .stat{padding:24px 4px}
+  .stat b{display:block;font-size:1.6rem;color:var(--accent);font-weight:700;letter-spacing:-.02em}
+  .stat small{color:var(--muted);font-size:.85rem}
+
+  section.wrap{max-width:none;padding:88px max(24px,calc((100% - 1032px)/2))}
+  section:nth-of-type(odd){background:var(--alt)}
+  .sec-head{margin-bottom:40px}
+  .sec-head .num{display:block;font-size:.78rem;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+  .sec-head .num::after{content:" —"}
+  h2{font-size:2rem;font-weight:700;letter-spacing:-.02em}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:28px;position:relative;transition:box-shadow .25s,transform .25s}
+  .card:hover{box-shadow:0 10px 30px rgba(16,35,70,.08);transform:translateY(-2px)}
+  .card h3{font-size:1.15rem;font-weight:600;margin-bottom:4px;letter-spacing:-.01em}
+  .meta{font-size:.76rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  .card p,.card li{color:var(--muted);font-size:.95rem}
+  .card ul{padding-left:18px;margin-top:6px}
+  .card li{margin-bottom:6px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+  .chip{font-size:.76rem;font-weight:500;padding:4px 11px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+  .badge{display:inline-block;margin-bottom:12px;font-size:.7rem;font-weight:600;padding:4px 10px;border-radius:999px;background:#fff4e5;color:#a35a00}
+  .badge.wip{background:#eef2f7;color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:20px}
+  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+  @media(max-width:760px){.about{grid-template-columns:1fr}}
+  .about p{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+  .kv{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+  .kv div{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:.92rem}
+  .kv div:last-child{border:none}
+  .kv span:first-child{color:var(--muted);font-size:.75rem;font-weight:600;letter-spacing:.08em}
+  .kv span:last-child{font-weight:500;text-align:right}
+
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .skills h4{color:var(--text);font-size:.8rem;font-weight:700;margin-bottom:6px;letter-spacing:.1em}
+
+  .contact{text-align:center}
+  .contact p{color:var(--muted);max-width:540px;margin:0 auto 28px;font-size:1.05rem}
+  .contact .cta{justify-content:center}
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s}
+  .reveal.in{opacity:1;transform:none}
+
+  .thumb{display:block;margin:-28px -28px 18px;border-bottom:1px solid var(--line);background:#fff;border-radius:10px 10px 0 0;overflow:hidden}
+  .thumb img{width:100%;height:200px;object-fit:cover;display:block}
+  .more{display:inline-block;margin-top:16px;font-weight:600;font-size:.9rem;color:var(--accent);text-decoration:none}
+  .more:hover{text-decoration:underline}
+
+  .back{display:inline-block;margin-bottom:22px;color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500}
+  .back:hover{color:var(--accent)}
+  .video{width:100%;border-radius:10px;border:1px solid var(--line);background:#000;display:block}
+  .two{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
+  @media(max-width:800px){.two{grid-template-columns:1fr}}
+  .prose p{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+  .parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
+  .part{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:box-shadow .25s}
+  .part:hover{box-shadow:0 10px 30px rgba(16,35,70,.08)}
+  .part img{width:100%;aspect-ratio:1;object-fit:contain;display:block;background:#fff}
+  .part div{padding:14px 16px;border-top:1px solid var(--line)}
+  .part b{display:block;font-size:.95rem}
+  .part small{color:var(--muted);font-size:.82rem}
+  .steps{counter-reset:s;list-style:none}
+  .steps li{counter-increment:s;position:relative;padding:0 0 22px 52px;color:var(--muted)}
+  .steps li b{color:var(--text);display:block;margin-bottom:2px}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+  .specs div span:last-child{font-weight:600}
+
+  .btn{border-radius:999px}
+  .hero-split{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+  .hero-photo{border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#eef2f9}
+  .hero-photo img{width:100%;height:520px;object-fit:cover;object-position:center 60%;display:block}
+  @media(max-width:860px){.hero-split{grid-template-columns:1fr}.hero-photo img{height:380px}}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .award{background:#fff4e5;color:#a35a00;font-weight:600;font-size:.82rem;padding:6px 14px;border-radius:999px}
+  .fea-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+  @media(max-width:800px){.fea-grid{grid-template-columns:1fr}}
+  .fig{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+  .fig img{width:100%;display:block}
+  .fig figcaption{padding:10px 14px;font-size:.84rem;color:var(--muted);border-top:1px solid var(--line)}
+  table.res{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:.94rem}
+  table.res th,table.res td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line)}
+  table.res th{background:var(--accent-soft);color:var(--accent);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+  table.res tr:last-child td{border-bottom:none}
+  table.res td b{color:var(--text)}
+  .note{background:#eef2f7;border-radius:10px;padding:14px 18px;color:var(--muted);font-size:.9rem;margin-top:18px}
+  .pedal{margin-bottom:56px}
+  .pedal h3{font-size:1.3rem;margin-bottom:6px}
+  .pedal .sub{color:var(--muted);margin-bottom:14px}
+  .chassis{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+  @media(max-width:800px){.chassis{grid-template-columns:1fr}}
+  .wrap.contact p{color:var(--muted);max-width:540px;margin:0 auto 26px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo">Divyam Singla</a>
+    <ul>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="wrap">
+  <a class="back" href="index.html#projects">← Back to all projects</a>
+  <div class="hero-split">
+    <div>
+      <div class="tag">Project · Team Trinity Karterz · HKFC Season 5</div>
+      <h1>Racing Go-Kart<br><span>Pedals, FEA &amp; Undertray</span></h1>
+      <p class="lede">A 150 cc racing go-kart built by our university motorsports club for HKFC Season 5. I designed and analysed the brake and throttle pedals in Ansys, designed the undertray for engine cooling, and worked on chassis welding and fabrication.</p>
+      <div class="badges"><span class="award">🏆 Best Cross Pad</span><span class="award">🥈 1st Runner-up · Acceleration</span></div>
+    </div>
+    <div class="hero-photo"><img src="assets/kart-main.jpg" alt="Team Trinity Karterz go-kart on display stand"></div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>3.53</b><small>Min FoS · brake pedal (650 N)</small></div>
+    <div class="stat"><b>70.9 MPa</b><small>Max stress · brake pedal</small></div>
+    <div class="stat"><b>5.76</b><small>Min FoS · throttle pedal (150 N)</small></div>
+    <div class="stat"><b>0.20 mm</b><small>Max pedal deflection</small></div>
+  </div>
+</header>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">My role</span><h2>What I worked on</h2></div>
+  <div class="grid">
+    <div class="card"><h3>Pedal design &amp; FEA</h3><p>Designed the brake and throttle (rev) pedals in SolidWorks and ran static structural FEA in Ansys to check stress, deflection and factor of safety under driver loads.</p></div>
+    <div class="card"><h3>Undertray &amp; cooling</h3><p>Designed the bodywork undertray to guide air to the engine: straight on the left, with an angled cutout on the engine side so air reaches it from below and the side.</p></div>
+    <div class="card"><h3>Fabrication</h3><p>Welding and grinding on the chassis, plus engine-side work such as replacing the spark plug and carburettor.</p></div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Analysis</span><h2>Pedal FEA (Ansys)</h2></div>
+
+  <div class="pedal">
+    <h3>1 · Brake pedal</h3>
+    <p class="sub">Load: 650 N on the pedal face, the maximum braking effort from the driver (about 65 kg). Supports at the pivot and mounting points.</p>
+    <div class="fig"><img src="assets/kart-brake-setup.jpg" alt="Brake pedal load and supports in Ansys"><figcaption>Boundary conditions: 650 N force, fixed and frictionless supports</figcaption></div>
+    <div class="fea-grid">
+      <figure class="fig"><img src="assets/kart-brake-def.jpg" alt="Brake pedal total deformation"><figcaption>Total deformation · max 0.133 mm</figcaption></figure>
+      <figure class="fig"><img src="assets/kart-brake-stress.jpg" alt="Brake pedal von-Mises stress"><figcaption>Von-Mises stress · max 70.9 MPa</figcaption></figure>
+      <figure class="fig"><img src="assets/kart-brake-fos.jpg" alt="Brake pedal factor of safety"><figcaption>Factor of safety · min 3.53</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="pedal">
+    <h3>2 · Throttle (rev) pedal</h3>
+    <p class="sub">Load: 150 N, the continuous actuation force from the driver (about 15 kg), with rapid cycling during racing.</p>
+    <div class="fig"><img src="assets/kart-rev-setup.jpg" alt="Throttle pedal load and supports in Ansys"><figcaption>Boundary conditions: 150 N force, fixed support</figcaption></div>
+    <div class="fea-grid">
+      <figure class="fig"><img src="assets/kart-rev-def.jpg" alt="Throttle pedal total deformation"><figcaption>Total deformation · max 0.204 mm</figcaption></figure>
+      <figure class="fig"><img src="assets/kart-rev-stress.jpg" alt="Throttle pedal von-Mises stress"><figcaption>Von-Mises stress · max 43.4 MPa</figcaption></figure>
+      <figure class="fig"><img src="assets/kart-rev-fos.jpg" alt="Throttle pedal factor of safety"><figcaption>Factor of safety · min 5.76</figcaption></figure>
+    </div>
+  </div>
+
+  <table class="res">
+    <tr><th>Result</th><th>Brake pedal</th><th>Throttle pedal</th></tr>
+    <tr><td>Applied load</td><td><b>650 N</b></td><td><b>150 N</b></td></tr>
+    <tr><td>Max total deformation</td><td><b>0.133 mm</b></td><td><b>0.204 mm</b></td></tr>
+    <tr><td>Max von-Mises stress</td><td><b>70.9 MPa</b></td><td><b>43.4 MPa</b></td></tr>
+    <tr><td>Minimum factor of safety</td><td><b>3.53</b></td><td><b>5.76</b></td></tr>
+    <tr><td>Pedal mass (CAD)</td><td>0.83 kg</td><td>0.69 kg</td></tr>
+    <tr><td>Mesh</td><td>55,588 nodes · 31,512 elements</td><td>48,218 nodes · 27,322 elements</td></tr>
+  </table>
+  <p style="color:var(--muted);margin-top:16px">Both pedals stay well within the elastic range under driver loads. The brake pedal, the more critical part, keeps a safety factor above 3.5, and both deflect by only fractions of a millimetre, so pedal feel stays firm.</p>
+  <div class="note">Analysis done in Ansys R18.2 (static structural). I'm re-running these studies in the latest Ansys version, and this page will be updated with the new results.</div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Aero &amp; cooling</span><h2>Undertray design</h2></div>
+  <div class="two">
+    <div class="prose">
+      <p>The kart's air-cooled 150 cc engine is mounted on the side, so it can overheat during long endurance runs. I designed the undertray to help: it runs straight on the left side, with an angled cutout on the right (engine) side so air flows to the engine from below and from the side.</p>
+      <p>In practice runs of about 2 hours each, we compared a flat undertray with the cutout version, measuring engine temperature with an IR thermometer. The engine ran cooler with the cutout undertray.</p>
+      <p>I'm now running a CFD comparison of the two designs to back up the track result with simulation.</p>
+    </div>
+    <div class="kv">
+      <div><span>LAYOUT</span><span>Straight left · angled cutout right</span></div>
+      <div><span>AIRFLOW</span><span>From below + side to engine</span></div>
+      <div><span>TEST</span><span>~2 h flat vs ~2 h cutout</span></div>
+      <div><span>MEASUREMENT</span><span>IR thermometer</span></div>
+      <div><span>RESULT</span><span>Cutout ran cooler</span></div>
+      <div><span>NEXT</span><span>CFD validation (in progress)</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">The kart</span><h2>Team design at a glance</h2></div>
+  <div class="chassis">
+    <figure class="fig"><img src="assets/kart-chassis-views.jpg" alt="Chassis dimetric, front and side views"><figcaption>Chassis: dimetric, front and side views (team CAD)</figcaption></figure>
+    <figure class="fig"><img src="assets/kart-chassis-top.jpg" alt="Chassis top view" style="max-height:560px;object-fit:contain"><figcaption>Chassis top view</figcaption></figure>
+  </div>
+  <div class="kv specs" style="margin-top:20px">
+    <div><span>CHASSIS</span><span>AISI 4130 chromoly, triangulated space frame</span></div>
+    <div><span>ENGINE</span><span>Bajaj Pulsar 150 cc DTSI · 14.5 HP @ 9000 rpm</span></div>
+    <div><span>GEARBOX</span><span>5-speed constant mesh</span></div>
+    <div><span>WHEELBASE / TRACK</span><span>42 in · 39.5 in front · 42 in rear</span></div>
+    <div><span>BRAKES</span><span>Front discs + single rear disc, dual master cylinders</span></div>
+    <div><span>TOP SPEED</span><span>~97 km/h (theoretical)</span></div>
+    <div><span>INITIAL ACCELERATION</span><span>5.17 m/s² (theoretical, 150 kg)</span></div>
+    <div><span>TEAM</span><span>25-member university motorsports club</span></div>
+  </div>
+</section>
+
+<section class="wrap reveal">
+  <div class="sec-head"><span class="num">Takeaways</span><h2>What I learned</h2></div>
+  <div class="grid">
+    <div class="card"><h3>FEA in practice</h3><p>Setting realistic loads and supports, reading deformation, stress and safety-factor plots, and checking results against what makes sense physically.</p></div>
+    <div class="card"><h3>Test, then validate</h3><p>Comparing two undertray designs on track with real temperature readings, then following up with CFD.</p></div>
+    <div class="card"><h3>Working in a big team</h3><p>Coordinating design, engine, steering and brake departments in a 25-member club to deliver a race-ready kart.</p></div>
+  </div>
+</section>
+
+<section class="wrap contact reveal">
+  <div class="sec-head" style="justify-content:center"><span class="num">More</span><h2>See other projects</h2></div>
+  <div class="cta"><a class="btn solid" href="index.html#projects">All projects</a><a class="btn" href="jet-engine.html">Jet engine project</a><a class="btn" href="index.html#contact">Contact me</a></div>
+</section>
+
+<footer>© 2026 Divyam Singla · <a href="https://www.linkedin.com/in/divyamsingla09/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/DivyamSingla09" target="_blank" rel="noopener">GitHub</a></footer>
+<script>
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
