@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Team Trinity Karterz Go-Kart — Divyam Singla</title>
-<meta name="description" content="Go-kart for HKFC Season 5: brake and throttle pedal design with Ansys FEA and chassis fabrication.">
+<meta name="description" content="Go-kart for HKFC Season 5: brake pedal, throttle pedal and stub axle FEA in Ansys, and chassis fabrication.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -151,9 +151,9 @@
   <div class="hero-split">
     <div>
       <div class="tag">Project · Team Trinity Karterz · HKFC Season 5</div>
-      <h1>Racing Go-Kart<br><span>Pedal Design &amp; FEA</span></h1>
-      <p class="lede">A 150 cc racing go-kart built by our university motorsports club for HKFC Season 5. I designed and analysed the brake and throttle pedals in Ansys and worked on chassis welding and fabrication.</p>
-      <div class="badges"><span class="award">🏆 Best Cross Pad</span><span class="award">🥈 1st Runner-up · Acceleration</span></div>
+      <h1>Racing Go-Kart<br><span>Pedals, Stub Axle &amp; FEA</span></h1>
+      <p class="lede">A 150 cc racing go-kart built by our university motorsports club for HKFC Season 5. I designed and analysed the brake and throttle pedals and the front stub axle in Ansys, and worked on chassis welding and fabrication.</p>
+      <div class="badges"><span class="award">🏆 1st in Cross Pad</span><span class="award">🥈 1st Runner-up · Acceleration</span></div>
     </div>
     <div class="hero-photo"><img src="assets/kart-main.jpg" alt="Team Trinity Karterz go-kart on display stand"></div>
   </div>
@@ -168,13 +168,13 @@
 <section class="wrap reveal">
   <div class="sec-head"><span class="num">My role</span><h2>What I worked on</h2></div>
   <div class="grid">
-    <div class="card"><h3>Pedal design &amp; FEA</h3><p>Designed the brake and throttle (rev) pedals in SolidWorks and ran static structural FEA in Ansys to check stress, deflection and factor of safety under driver loads.</p></div>
+    <div class="card"><h3>Pedal &amp; stub axle FEA</h3><p>Designed the brake and throttle (rev) pedals in SolidWorks and ran static structural FEA in Ansys on the pedals and the front stub axle, checking stress, deflection and factor of safety under real loads.</p></div>
     <div class="card"><h3>Fabrication</h3><p>Welding and grinding on the chassis, plus engine-side work such as replacing the spark plug and carburettor.</p></div>
   </div>
 </section>
 
 <section class="wrap reveal">
-  <div class="sec-head"><span class="num">Analysis</span><h2>Pedal FEA (Ansys)</h2></div>
+  <div class="sec-head"><span class="num">Analysis</span><h2>FEA (Ansys)</h2></div>
 
   <div class="pedal">
     <h3>1 · Brake pedal</h3>
@@ -198,16 +198,30 @@
     </div>
   </div>
 
+  <div class="pedal">
+    <h3>3 · Front stub axle</h3>
+    <p class="sub">Load: 1100 N transferred to the front axle, so 550 N on each stub axle. Material: low-carbon steel.</p>
+    <div class="fea-grid" style="grid-template-columns:repeat(2,1fr)">
+      <figure class="fig"><img src="assets/kart-stub-model.jpg" alt="Stub axle CAD model"><figcaption>Stub axle model</figcaption></figure>
+      <figure class="fig"><img src="assets/kart-stub-mesh.jpg" alt="Stub axle mesh"><figcaption>Tetrahedral mesh</figcaption></figure>
+    </div>
+    <div class="fea-grid">
+      <figure class="fig"><img src="assets/kart-stub-def.jpg" alt="Stub axle total deformation"><figcaption>Total deformation · max 0.511 mm</figcaption></figure>
+      <figure class="fig"><img src="assets/kart-stub-stress.jpg" alt="Stub axle von-Mises stress"><figcaption>Von-Mises stress · max 147.8 MPa</figcaption></figure>
+      <figure class="fig"><img src="assets/kart-stub-fos.jpg" alt="Stub axle factor of safety"><figcaption>Factor of safety · min 1.99</figcaption></figure>
+    </div>
+  </div>
+
   <table class="res">
-    <tr><th>Result</th><th>Brake pedal</th><th>Throttle pedal</th></tr>
-    <tr><td>Applied load</td><td><b>650 N</b></td><td><b>150 N</b></td></tr>
-    <tr><td>Max total deformation</td><td><b>0.133 mm</b></td><td><b>0.204 mm</b></td></tr>
-    <tr><td>Max von-Mises stress</td><td><b>70.9 MPa</b></td><td><b>43.4 MPa</b></td></tr>
-    <tr><td>Minimum factor of safety</td><td><b>3.53</b></td><td><b>5.76</b></td></tr>
-    <tr><td>Pedal mass (CAD)</td><td>0.83 kg</td><td>0.69 kg</td></tr>
-    <tr><td>Mesh</td><td>55,588 nodes · 31,512 elements</td><td>48,218 nodes · 27,322 elements</td></tr>
+    <tr><th>Result</th><th>Brake pedal</th><th>Throttle pedal</th><th>Stub axle</th></tr>
+    <tr><td>Applied load</td><td><b>650 N</b></td><td><b>150 N</b></td><td><b>550 N</b> per stub</td></tr>
+    <tr><td>Max total deformation</td><td><b>0.133 mm</b></td><td><b>0.204 mm</b></td><td><b>0.511 mm</b></td></tr>
+    <tr><td>Max von-Mises stress</td><td><b>70.9 MPa</b></td><td><b>43.4 MPa</b></td><td><b>147.8 MPa</b></td></tr>
+    <tr><td>Minimum factor of safety</td><td><b>3.53</b></td><td><b>5.76</b></td><td><b>1.99</b></td></tr>
+    <tr><td>Mass (CAD)</td><td>0.83 kg</td><td>0.69 kg</td><td>—</td></tr>
+    <tr><td>Mesh</td><td>55,588 nodes · 31,512 elements</td><td>48,218 nodes · 27,322 elements</td><td>Tetrahedral</td></tr>
   </table>
-  <p style="color:var(--muted);margin-top:16px">Both pedals stay well within the elastic range under driver loads. The brake pedal, the more critical part, keeps a safety factor above 3.5, and both deflect by only fractions of a millimetre, so pedal feel stays firm.</p>
+  <p style="color:var(--muted);margin-top:16px">All three parts stay within the elastic range. The pedals have large margins (FoS 3.5–5.8) and deflect by only fractions of a millimetre, so pedal feel stays firm. The stub axle carries the highest stress, 147.8 MPa, with a safety factor of about 2 under the front-axle load, which is acceptable for a low-carbon steel part.</p>
   <div class="note">Analysis done in Ansys R18.2 (static structural). I'm re-running these studies in the latest Ansys version, and this page will be updated with the new results.</div>
 </section>
 
