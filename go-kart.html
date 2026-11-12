@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Team Trinity Karterz Go-Kart — Divyam Singla</title>
-<meta name="description" content="Go-kart for HKFC Season 5: brake and throttle pedal design with Ansys FEA, undertray for engine cooling, chassis fabrication.">
+<meta name="description" content="Go-kart for HKFC Season 5: brake and throttle pedal design with Ansys FEA and chassis fabrication.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -151,8 +151,8 @@
   <div class="hero-split">
     <div>
       <div class="tag">Project · Team Trinity Karterz · HKFC Season 5</div>
-      <h1>Racing Go-Kart<br><span>Pedals, FEA &amp; Undertray</span></h1>
-      <p class="lede">A 150 cc racing go-kart built by our university motorsports club for HKFC Season 5. I designed and analysed the brake and throttle pedals in Ansys, designed the undertray for engine cooling, and worked on chassis welding and fabrication.</p>
+      <h1>Racing Go-Kart<br><span>Pedal Design &amp; FEA</span></h1>
+      <p class="lede">A 150 cc racing go-kart built by our university motorsports club for HKFC Season 5. I designed and analysed the brake and throttle pedals in Ansys and worked on chassis welding and fabrication.</p>
       <div class="badges"><span class="award">🏆 Best Cross Pad</span><span class="award">🥈 1st Runner-up · Acceleration</span></div>
     </div>
     <div class="hero-photo"><img src="assets/kart-main.jpg" alt="Team Trinity Karterz go-kart on display stand"></div>
@@ -169,7 +169,6 @@
   <div class="sec-head"><span class="num">My role</span><h2>What I worked on</h2></div>
   <div class="grid">
     <div class="card"><h3>Pedal design &amp; FEA</h3><p>Designed the brake and throttle (rev) pedals in SolidWorks and ran static structural FEA in Ansys to check stress, deflection and factor of safety under driver loads.</p></div>
-    <div class="card"><h3>Undertray &amp; cooling</h3><p>Designed the bodywork undertray to guide air to the engine: straight on the left, with an angled cutout on the engine side so air reaches it from below and the side.</p></div>
     <div class="card"><h3>Fabrication</h3><p>Welding and grinding on the chassis, plus engine-side work such as replacing the spark plug and carburettor.</p></div>
   </div>
 </section>
@@ -213,25 +212,6 @@
 </section>
 
 <section class="wrap reveal">
-  <div class="sec-head"><span class="num">Aero &amp; cooling</span><h2>Undertray design</h2></div>
-  <div class="two">
-    <div class="prose">
-      <p>The kart's air-cooled 150 cc engine is mounted on the side, so it can overheat during long endurance runs. I designed the undertray to help: it runs straight on the left side, with an angled cutout on the right (engine) side so air flows to the engine from below and from the side.</p>
-      <p>In practice runs of about 2 hours each, we compared a flat undertray with the cutout version, measuring engine temperature with an IR thermometer. The engine ran cooler with the cutout undertray.</p>
-      <p>I'm now running a CFD comparison of the two designs to back up the track result with simulation.</p>
-    </div>
-    <div class="kv">
-      <div><span>LAYOUT</span><span>Straight left · angled cutout right</span></div>
-      <div><span>AIRFLOW</span><span>From below + side to engine</span></div>
-      <div><span>TEST</span><span>~2 h flat vs ~2 h cutout</span></div>
-      <div><span>MEASUREMENT</span><span>IR thermometer</span></div>
-      <div><span>RESULT</span><span>Cutout ran cooler</span></div>
-      <div><span>NEXT</span><span>CFD validation (in progress)</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap reveal">
   <div class="sec-head"><span class="num">The kart</span><h2>Team design at a glance</h2></div>
   <div class="chassis">
     <figure class="fig"><img src="assets/kart-chassis-views.jpg" alt="Chassis dimetric, front and side views"><figcaption>Chassis: dimetric, front and side views (team CAD)</figcaption></figure>
@@ -253,7 +233,7 @@
   <div class="sec-head"><span class="num">Takeaways</span><h2>What I learned</h2></div>
   <div class="grid">
     <div class="card"><h3>FEA in practice</h3><p>Setting realistic loads and supports, reading deformation, stress and safety-factor plots, and checking results against what makes sense physically.</p></div>
-    <div class="card"><h3>Test, then validate</h3><p>Comparing two undertray designs on track with real temperature readings, then following up with CFD.</p></div>
+    <div class="card"><h3>Design for real loads</h3><p>Turning driver inputs into design loads (650 N braking, 150 N throttle) and sizing parts to stay stiff and safe under them.</p></div>
     <div class="card"><h3>Working in a big team</h3><p>Coordinating design, engine, steering and brake departments in a 25-member club to deliver a race-ready kart.</p></div>
   </div>
 </section>
